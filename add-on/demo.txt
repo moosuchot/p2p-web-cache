@@ -1,0 +1,49 @@
+#
+# Scenario 1: Normal Operation
+#   Peer B can't reach localhost:5001/popular.html, so he tells A to fetch it
+#   through Kademlia and everyone's happy
+
+# Peer A
+cfx run --static-args "{\"isSeed\": true, \"port\": 5050, \"role\": \"A\", \"isGullible\": true}"
+# Peer B
+cfx run --static-args "{\"isSeed\": false, \"port\": 5051, \"role\": \"B\", \"isGullible\": true}"
+
+Start origin server
+From Chrome, request localhost:5001   ->   click link   ->   profit
+Start B
+From B, request localhost:5001   ->   click link   ->   fail
+Kill B
+Start A
+Restart B
+From B, request localhost:5001   ->   click link   ->   great success
+
+#
+# Scenario 2: Malicious Content from google.com
+#   Peer B can't talk to google, so he'll request it from A. But he's gullible
+#   and doesn't verify the content, so he gets pwned
+
+# Peer A
+cfx run --static-args "{\"isSeed\": true, \"port\": 5050, \"role\": \"A\", \"isGullible\": false, \"isEvil\": true}"
+# Peer B
+cfx run --static-args "{\"isSeed\": false, \"port\": 5051, \"role\": \"B\", \"isGullible\": true, \"isGoogleDown\": true}"
+
+Start A
+Start B
+From B, request http://google.com   ->   get pwned
+
+#
+# Scenario 3: Detecting invalid content
+#   Peer B can't reach localhost:5001/owned, so he requests from A. A tries to send Malicious
+#   stuff again, but now B checks the signature and throws up a warning.
+
+# Peer A
+cfx run --static-args "{\"isSeed\": true, \"port\": 5050, \"role\": \"A\", \"isGullible\": false, \"isEvil\": true}"
+# Peer B
+cfx run --static-args "{\"isSeed\": false, \"port\": 5051, \"role\": \"B\", \"isGullible\": false}"
+
+Start origin-server
+Navigate to localhost:5001/public-key.txt
+Kill B
+Start A
+Start B
+From B, request localhost:5001/popular.html   ->   see no evil

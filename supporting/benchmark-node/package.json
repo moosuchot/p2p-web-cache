@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "microtime": "^1.0.1",
+    "randomstring": "^1.0.3"
+  }
+}

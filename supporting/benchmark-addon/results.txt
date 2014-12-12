@@ -1,0 +1,12 @@
+console.log: integration: Result for 8 verificationsPerSecond:16.155088852988694
+console.log: integration: Result for 512 verificationsPerSecond:16.360661697873113
+console.log: integration: Result for 2048 verificationsPerSecond:15.660344527579607
+console.log: integration: Result for 4096 verificationsPerSecond:15
+console.log: integration: Result for 8192 verificationsPerSecond:13.700715481808494
+console.log: integration: Result for 16384 verificationsPerSecond:11.588977594643318
+console.log: integration: Result for 32768 verificationsPerSecond:8.683905827865688
+console.log: integration: Result for 65536 verificationsPerSecond:5.88774041606699
+console.log: integration: Result for 131072 verificationsPerSecond:3.534817956875221
+console.log: integration: Result for 524288 verificationsPerSecond:1.0673877463886714
+console.log: integration: Result for 1048576 verificationsPerSecond:0.5523268301963216
+console.log: integration: Result for 4194304 verificationsPerSecond:0.14156886617495082

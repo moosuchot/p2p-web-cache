@@ -1,0 +1,5 @@
+*~
+node_modules/
+kademlia/data/
+kademlia/test/data/
+.DS_Store
